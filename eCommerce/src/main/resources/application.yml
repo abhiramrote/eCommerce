@@ -1,0 +1,42 @@
+# src/main/resources/application.yml
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/smartshop
+    username: smartshop_user
+    password: password
+    hikari:
+      maximum-pool-size: 10          # interview: connection pooling
+      minimum-idle: 2
+      connection-timeout: 30000
+
+  jpa:
+    hibernate:
+      ddl-auto: validate             # Flyway owns the schema — never use create-drop in prod
+    show-sql: false                  # flip to true while learning, off in prod
+    properties:
+      hibernate:
+        format_sql: true
+        default_batch_fetch_size: 20 # interview: batch fetching to avoid N+1
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+app:
+  jwt:
+    secret: "a-very-long-secret-key-at-least-256-bits-long-for-hs256-algorithm"
+    expiration-ms: 86400000          # 24 hours
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: when-authorized
+
+logging:
+  level:
+    com.smartshop: DEBUG
+    org.springframework.security: DEBUG   # remove after setup works

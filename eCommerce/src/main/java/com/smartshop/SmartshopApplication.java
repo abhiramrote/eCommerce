@@ -1,0 +1,14 @@
+// src/main/java/com/smartshop/SmartshopApplication.java
+package com.smartshop;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+
+@SpringBootApplication
+@EnableJpaAuditing  // enables @CreatedDate and @LastModifiedDate on entities
+public class SmartshopApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(SmartshopApplication.class, args);
+    }
+}

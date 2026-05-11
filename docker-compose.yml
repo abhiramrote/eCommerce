@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: smartshop
+      POSTGRES_USER: smartshop_user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - smartshop_pgdata:/var/lib/postgresql/data
+
+volumes:
+  smartshop_pgdata:
